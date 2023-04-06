@@ -256,7 +256,7 @@ walleePayment.setCustomTheme(null, ThemeEnum.DARK)
 
 ### Colors
 
-![Payment method list](imgstheme-1.jpeg) ![Payment method details](imgstheme-2.jpeg) ![Pyament method additional details](imgstheme-3.jpeg)
+![Payment method list](imgs/theme-1.jpeg) ![Payment method details](imgs/theme-2.jpeg) ![Pyament method additional details](imgs/theme-3.jpeg)
 
 ### Default themes
 
