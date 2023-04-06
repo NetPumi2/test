@@ -22,7 +22,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.wallee/wallee-payment-sdk)](https://central.sonatype.com/artifact/com.wallee/wallee-payment-sdk/0.1.0)
 
-dsafasd asdfasdf adfsfaf adsfa asdf sadf sadfsadfas fasdfas dfasdfads2222222222
+dsafasd asdfasdf adfsfaf adsfa asdf sadf sadfsadfas fasdfas dfasdfads22222222224444444449999999
 
 ## API reference
 
