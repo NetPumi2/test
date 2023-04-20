@@ -354,4 +354,4 @@ whiteLabelNamePaymentSdk.setCustomTheme(null, ThemeEnum.DARK)
 }
 ```
 
-test1
+test2
