@@ -20,7 +20,7 @@
 
 # wallee Android Payment SDK
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.wallee/wallee-payment-sdk)](https://central.sonatype.com/artifact/com.wallee/wallee-payment-sdk/0.1.0)
+[![Maven Central](https://img.shields.io/maven-central/v/com.wallee/wallee-payment-sdk)](https://central.sonatype.com/artifact/com.wallee/wallee-payment-sdk/1.0.0)
 
 ## API reference
 
@@ -28,11 +28,11 @@
 | --- | :-: | --- |
 | `OnResultEventListener` | interface | Interface for handling post-payment events `paymentResult` |
 | `fun paymentResult(paymentResult: PaymentResult)` | function | Result handler for transaction state |
-| `WalleePaymentSdk(eventListener: OnResultEventListener, context: Context)` | constructor | Initialization of SDK. Both Parameters are required! |
-| `walleePayment.launch(token: String)` | function | Opening payment dialog (activity) |
-| `walleePayment.setDarkTheme(theme: JSONObject)` | function | Can override the whole dark theme or just some specific color. All colors are in json format |
-| `walleePayment.setLightTheme(theme: JSONObject)` | function | Can override the whole light theme or just some specific color. All colors are in json format |
-| `walleePayment.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` | function | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
+| `WhiteLabelNamePaymentSdk(eventListener: OnResultEventListener, context: Context)` | constructor | Initialization of SDK. Both Parameters are required! |
+| `whiteLabelNamePaymentSdk.launch(token: String)` | function | Opening payment dialog (activity) |
+| `whiteLabelNamePaymentSdk.setDarkTheme(theme: JSONObject)` | function | Can override the whole dark theme or just some specific color. All colors are in json format |
+| `whiteLabelNamePaymentSdk.setLightTheme(theme: JSONObject)` | function | Can override the whole light theme or just some specific color. All colors are in json format |
+| `whiteLabelNamePaymentSdk.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` | function | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
 
 ## Installation
 
@@ -42,11 +42,12 @@
 
 ### Configuration
 
-Add `wallee-payment-sdk` to your `app/build.gradle` dependencies.
+Add `whitelabelnameone` to your `app/build.gradle` dependencies.
 
 ```groovy
 dependencies {
-    implementation("com.wallee:wallee-payment-sdk:0.1.0")
+    // ...
+    implementation("com.whitelabelname:whitelabelnameone:1.0.0")
     // ...
 }
 ```
@@ -83,8 +84,8 @@ Before launching the Android Payment SDK to collect the payment, your checkout p
 Let your checkout activity extend `OnResultEventListener`, add the necessary function `paymentResult`.
 
 ```kotlin
-import com.wallee.walleepaymentsdk.event.PaymentResult
-import com.wallee.walleepaymentsdk.event.OnResultEventListener
+import com.whitelabelname.event.PaymentResult
+import com.whitelabelname.event.OnResultEventListener
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
     override fun paymentResult(paymentResult: PaymentResult) {
@@ -93,19 +94,19 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
 }
 ```
 
-Initialize the `WalleePaymentSdk` instance inside `onCreate` of your checkout activity.
+Initialize the `WhiteLabelNamePaymentSdk` instance inside `onCreate` of your checkout activity.
 
 ```kotlin
 // ...
-import com.wallee.walleepaymentsdk.WalleePaymentSdk
+import com.whitelabelname.WhiteLabelNamePaymentSdk
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
-    lateinit var walleePayment: WalleePaymentSdk
+    lateinit var whiteLabelNamePaymentSdk: WhiteLabelNamePaymentSdk
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        walleePayment = WalleePaymentSdk(this, this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this, this)
     }
 
     // ...
@@ -118,17 +119,17 @@ When the customer taps the checkout button, call your endpoint that creates the 
 // ...
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
-    lateinit var walleePayment: WalleePaymentSdk
+    lateinit var whiteLabelNamePaymentSdk: WhiteLabelNamePaymentSdk
     lateinit var btnCheckout: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        walleePayment = WalleePaymentSdk(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
         btnCheckout.setOnClickListener {
             // Call endpoint and get access token
-            walleePayment.launch("ACCESS_TOKEN")
+            whiteLabelNamePaymentSdk.launch("ACCESS_TOKEN")
         }
     }
 
@@ -154,7 +155,7 @@ The response object contains these properties:
 
 ```kotlin
 // ...
-import com.wallee.walleepaymentsdk.event.PaymentResult
+import com.whitelabelname.event.PaymentResult
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
     // ...
@@ -179,15 +180,15 @@ As customers could quit the app or lose network connection before the result is 
 
 The appearance of the payment dialog can be customized to match the look and feel of your app. This can be done for both the light and dark theme individually.
 
-Colors can be modified by passing a JSON object to the `WalleePaymentSdk` instance. You can either completely override the theme or only change certain colors.
+Colors can be modified by passing a JSON object to the `WhiteLabelNamePaymentSdk` instance. You can either completely override the theme or only change certain colors.
 
-- `walleePayment.setLightTheme(JSONObject)` allows to modify the payment dialog's light theme.
-- `walleePayment.setDarkTheme(JSONObject)` allows to modify the payment dialog's dark theme.
-- `walleePayment.setCustomTheme(JSONObject, ThemeEnum)` allows to enforce a specific theme (dark, light or your own).
+- `whiteLabelNamePaymentSdk.setLightTheme(JSONObject)` allows to modify the payment dialog's light theme.
+- `whiteLabelNamePaymentSdk.setDarkTheme(JSONObject)` allows to modify the payment dialog's dark theme.
+- `whiteLabelNamePaymentSdk.setCustomTheme(JSONObject, ThemeEnum)` allows to enforce a specific theme (dark, light or your own).
 
 ```kotlin
 // ...
-import com.wallee.walleepaymentsdk.enums.ThemeEnum
+import com.whitelabelname.enums.ThemeEnum
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
     // ...
@@ -195,10 +196,10 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        walleePayment = WalleePaymentSdk(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
-        walleePayment.setDarkTheme(getCustomTheme())
-        walleePayment.setLightTheme(getCustomTheme())
+        whiteLabelNamePaymentSdk.setDarkTheme(getCustomTheme())
+        whiteLabelNamePaymentSdk.setLightTheme(getCustomTheme())
     }
 
     fun getCustomTheme(): JSONObject {
@@ -220,7 +221,7 @@ The `setCustomTheme` function allows to define the theme to be used by the payme
 
 ```kotlin
 // ...
-import com.wallee.walleepaymentsdk.enums.ThemeEnum
+import com.whitelabelname.enums.ThemeEnum
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
     // ...
@@ -228,9 +229,9 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        walleePayment = WalleePaymentSdk(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
-        walleePayment.setCustomTheme(getCustomTheme(), ThemeEnum.DARK)
+        whiteLabelNamePaymentSdk.setCustomTheme(getCustomTheme(), ThemeEnum.DARK)
     }
 
     fun getCustomTheme(): JSONObject {
@@ -249,7 +250,8 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
 You can also use `setCustomTheme` to force the usage of the light or dark theme.
 
 ```kotlin
-walleePayment.setCustomTheme(null, ThemeEnum.DARK)
+  //...
+whiteLabelNamePaymentSdk.setCustomTheme(null, ThemeEnum.DARK)
 ```
 
 ### Colors
@@ -352,4 +354,4 @@ walleePayment.setCustomTheme(null, ThemeEnum.DARK)
 }
 ```
 
-lukasek v 1
+test1
