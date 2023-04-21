@@ -56,24 +56,24 @@ dependencies {
 
 ### Set up wallee
 
-To use the Android Payment SDK, you need a [wallee account](https://app-wallee.com/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
+To use the Android Payment SDK, you need a [whitelabelnameone account](https://whitelabel-signup.com/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
 
 ### Create transaction
 
-For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [wallee Web Service API](https://app-wallee.com/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
+For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [wallee Web Service API](https://app-whitelabel.com/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
 
-To use the Android Payment SDK to collect payments, an endpoint needs to be added on your server that creates a transaction by calling the [create transaction](https://app-wallee.com/doc/api/web-service#transaction-service--create) API endpoint. A transaction holds information about the customer and the line items and tracks charge attempts and the payment state.
+To use the Android Payment SDK to collect payments, an endpoint needs to be added on your server that creates a transaction by calling the [create transaction](https://app-whitelabel.com/doc/api/web-service#transaction-service--create) API endpoint. A transaction holds information about the customer and the line items and tracks charge attempts and the payment state.
 
-Once the transaction has been created, your endpoint can fetch an access token by calling the [create transaction credentials](https://app-wallee.com/doc/api/web-service#transaction-service--create-transaction-credentials) API endpoint. The access token is returned and passed to the Android Payment SDK.
+Once the transaction has been created, your endpoint can fetch an access token by calling the [create transaction credentials](https://app-whitelabel.com/doc/api/web-service#transaction-service--create-transaction-credentials) API endpoint. The access token is returned and passed to the Android Payment SDK.
 
 ```bash
 # Create a transaction
-curl 'https://app-wallee.com/api/transaction/create?spaceId=1' \
+curl 'https://app-whitelabel.com/api/transaction/create?spaceId=1' \
   -X "POST" \
   -d "{{TRANSACTION_DATA}}"
 
 # Fetch an access token for the created transaction
-curl 'https://app-wallee.com/api/transaction/createTransactionCredentials?spaceId={{SPACE_ID}}&id={{TRANSACTION_ID}}' \
+curl 'https://app-whitelabel.com/api/transaction/createTransactionCredentials?spaceId={{SPACE_ID}}&id={{TRANSACTION_ID}}' \
   -X 'POST'
 ```
 
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
 
 ### Verify payment
 
-As customers could quit the app or lose network connection before the result is handled or malicious clients could manipulate the response, it is strongly recommended to set up your server to listen for webhook events the get transactions' actual states. Find more information in the [webhook documentation](https://app-wallee.com/en-us/doc/webhooks).
+As customers could quit the app or lose network connection before the result is handled or malicious clients could manipulate the response, it is strongly recommended to set up your server to listen for webhook events the get transactions' actual states. Find more information in the [webhook documentation](https://app-whitelabel.com/en-us/doc/webhooks).
 
 ## Theming
 
@@ -354,4 +354,4 @@ whiteLabelNamePaymentSdk.setCustomTheme(null, ThemeEnum.DARK)
 }
 ```
 
-test1
+test6
