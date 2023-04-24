@@ -1,13 +1,13 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
-- [WhiteLabelNameOne2 Android Payment SDK](#whitelabelnameone2-android-payment-sdk)
+- [WhiteLabelNameOne2 Android Payment SDK](#WhiteLabelNameOne2-android-payment-sdk)
   - [API reference](#api-reference)
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Configuration](#configuration)
   - [Integration](#integration)
-    - [Set up WhiteLabelNameOne2](#set-up-whitelabelnameone2)
+    - [Set up WhiteLabelNameOne2](#set-up-WhiteLabelNameOne2)
     - [Create transaction](#create-transaction)
     - [Collect payment details](#collect-payment-details)
     - [Handle result](#handle-result)
@@ -354,4 +354,4 @@ whiteLabelNamePaymentSdkTWO.setCustomTheme(null, ThemeEnum.DARK)
 }
 ```
 
-test8342342
+test8
