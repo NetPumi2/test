@@ -1,13 +1,13 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
-- [WhiteLabelNameOne2 Android Payment SDK](#WhiteLabelNameOne2-android-payment-sdk)
+- [WhiteLabelNameOne Android Payment SDK](#WhiteLabelNameOne-android-payment-sdk)
   - [API reference](#api-reference)
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Configuration](#configuration)
   - [Integration](#integration)
-    - [Set up WhiteLabelNameOne2](#set-up-WhiteLabelNameOne2)
+    - [Set up WhiteLabelNameOne](#set-up-WhiteLabelNameOne)
     - [Create transaction](#create-transaction)
     - [Collect payment details](#collect-payment-details)
     - [Handle result](#handle-result)
@@ -18,9 +18,9 @@
       - [Light theme](#light-theme)
       - [Dark theme](#dark-theme)
 
-# WhiteLabelNameOne2 Android Payment SDK
+# WhiteLabelNameOne Android Payment SDK
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.WhiteLabelNameOne2/WhiteLabelNameOne2-payment-sdk)](https://central.sonatype.com/artifact/com.WhiteLabelNameOne2/WhiteLabelNameOne2-payment-sdk/1.0.0)
+[![Maven Central](https://img.shields.io/maven-central/v/com.WhiteLabelNameOne/WhiteLabelNameOne-payment-sdk)](https://central.sonatype.com/artifact/com.WhiteLabelNameOne/WhiteLabelNameOne-payment-sdk/1.0.0)
 
 ## API reference
 
@@ -28,11 +28,11 @@
 | --- | :-: | --- |
 | `OnResultEventListener` | interface | Interface for handling post-payment events `paymentResult` |
 | `fun paymentResult(paymentResult: PaymentResult)` | function | Result handler for transaction state |
-| `WhiteLabelNamePaymentSdkTWO(eventListener: OnResultEventListener, context: Context)` | constructor | Initialization of SDK. Both Parameters are required! |
-| `whiteLabelNamePaymentSdkTWO.launch(token: String)` | function | Opening payment dialog (activity) |
-| `whiteLabelNamePaymentSdkTWO.setDarkTheme(theme: JSONObject)` | function | Can override the whole dark theme or just some specific color. All colors are in json format |
-| `whiteLabelNamePaymentSdkTWO.setLightTheme(theme: JSONObject)` | function | Can override the whole light theme or just some specific color. All colors are in json format |
-| `whiteLabelNamePaymentSdkTWO.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` | function | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
+| `WhiteLabelNamePaymentSdk(eventListener: OnResultEventListener, context: Context)` | constructor | Initialization of SDK. Both Parameters are required! |
+| `whiteLabelNamePaymentSdk.launch(token: String)` | function | Opening payment dialog (activity) |
+| `whiteLabelNamePaymentSdk.setDarkTheme(theme: JSONObject)` | function | Can override the whole dark theme or just some specific color. All colors are in json format |
+| `whiteLabelNamePaymentSdk.setLightTheme(theme: JSONObject)` | function | Can override the whole light theme or just some specific color. All colors are in json format |
+| `whiteLabelNamePaymentSdk.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` | function | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
 
 ## Installation
 
@@ -42,38 +42,38 @@
 
 ### Configuration
 
-Add `whitelabelnameone2` to your `app/build.gradle` dependencies.
+Add `whitelabelnameone` to your `app/build.gradle` dependencies.
 
 ```groovy
 dependencies {
     // ...
-    implementation("com.whitelabelname:whitelabelnameone2:1.0.0")
+    implementation("com.whitelabelname:whitelabelnameone:1.0.0")
     // ...
 }
 ```
 
 ## Integration
 
-### Set up WhiteLabelNameOne2
+### Set up WhiteLabelNameOne
 
-To use the Android Payment SDK, you need a [whitelabelnameone2 account](https://whitelabel-signup.com/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
+To use the Android Payment SDK, you need a [whitelabelnameone account](https://whitelabel-signup.com/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
 
 ### Create transaction
 
-For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [WhiteLabelNameOne2 Web Service API](https://app-whitelabel2.com/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
+For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [WhiteLabelNameOne Web Service API](https://app-whitelabel.com/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
 
-To use the Android Payment SDK to collect payments, an endpoint needs to be added on your server that creates a transaction by calling the [create transaction](https://app-whitelabel2.com/doc/api/web-service#transaction-service--create) API endpoint. A transaction holds information about the customer and the line items and tracks charge attempts and the payment state.
+To use the Android Payment SDK to collect payments, an endpoint needs to be added on your server that creates a transaction by calling the [create transaction](https://app-whitelabel.com/doc/api/web-service#transaction-service--create) API endpoint. A transaction holds information about the customer and the line items and tracks charge attempts and the payment state.
 
-Once the transaction has been created, your endpoint can fetch an access token by calling the [create transaction credentials](https://app-whitelabel2.com/doc/api/web-service#transaction-service--create-transaction-credentials) API endpoint. The access token is returned and passed to the Android Payment SDK.
+Once the transaction has been created, your endpoint can fetch an access token by calling the [create transaction credentials](https://app-whitelabel.com/doc/api/web-service#transaction-service--create-transaction-credentials) API endpoint. The access token is returned and passed to the Android Payment SDK.
 
 ```bash
 # Create a transaction
-curl 'https://app-whitelabel2.com/api/transaction/create?spaceId=1' \
+curl 'https://app-whitelabel.com/api/transaction/create?spaceId=1' \
   -X "POST" \
   -d "{{TRANSACTION_DATA}}"
 
 # Fetch an access token for the created transaction
-curl 'https://app-whitelabel2.com/api/transaction/createTransactionCredentials?spaceId={{SPACE_ID}}&id={{TRANSACTION_ID}}' \
+curl 'https://app-whitelabel.com/api/transaction/createTransactionCredentials?spaceId={{SPACE_ID}}&id={{TRANSACTION_ID}}' \
   -X 'POST'
 ```
 
@@ -94,19 +94,19 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
 }
 ```
 
-Initialize the `WhiteLabelNamePaymentSdkTWO` instance inside `onCreate` of your checkout activity.
+Initialize the `WhiteLabelNamePaymentSdk` instance inside `onCreate` of your checkout activity.
 
 ```kotlin
 // ...
-import com.whitelabelname.WhiteLabelNamePaymentSdkTWO
+import com.whitelabelname.WhiteLabelNamePaymentSdk
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
-    lateinit var whiteLabelNamePaymentSdkTWO: WhiteLabelNamePaymentSdkTWO
+    lateinit var whiteLabelNamePaymentSdk: WhiteLabelNamePaymentSdk
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        whiteLabelNamePaymentSdkTWO = WhiteLabelNamePaymentSdkTWO(this, this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this, this)
     }
 
     // ...
@@ -119,17 +119,17 @@ When the customer taps the checkout button, call your endpoint that creates the 
 // ...
 
 class MainActivity : AppCompatActivity(), OnResultEventListener {
-    lateinit var whiteLabelNamePaymentSdkTWO: WhiteLabelNamePaymentSdkTWO
+    lateinit var whiteLabelNamePaymentSdk: WhiteLabelNamePaymentSdk
     lateinit var btnCheckout: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        whiteLabelNamePaymentSdkTWO = WhiteLabelNamePaymentSdkTWO(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
         btnCheckout.setOnClickListener {
             // Call endpoint and get access token
-            whiteLabelNamePaymentSdkTWO.launch("ACCESS_TOKEN")
+            whiteLabelNamePaymentSdk.launch("ACCESS_TOKEN")
         }
     }
 
@@ -174,17 +174,17 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
 
 ### Verify payment
 
-As customers could quit the app or lose network connection before the result is handled or malicious clients could manipulate the response, it is strongly recommended to set up your server to listen for webhook events the get transactions' actual states. Find more information in the [webhook documentation](https://app-whitelabel2.com/en-us/doc/webhooks).
+As customers could quit the app or lose network connection before the result is handled or malicious clients could manipulate the response, it is strongly recommended to set up your server to listen for webhook events the get transactions' actual states. Find more information in the [webhook documentation](https://app-whitelabel.com/en-us/doc/webhooks).
 
 ## Theming
 
 The appearance of the payment dialog can be customized to match the look and feel of your app. This can be done for both the light and dark theme individually.
 
-Colors can be modified by passing a JSON object to the `WhiteLabelNamePaymentSdkTWO` instance. You can either completely override the theme or only change certain colors.
+Colors can be modified by passing a JSON object to the `WhiteLabelNamePaymentSdk` instance. You can either completely override the theme or only change certain colors.
 
-- `whiteLabelNamePaymentSdkTWO.setLightTheme(JSONObject)` allows to modify the payment dialog's light theme.
-- `whiteLabelNamePaymentSdkTWO.setDarkTheme(JSONObject)` allows to modify the payment dialog's dark theme.
-- `whiteLabelNamePaymentSdkTWO.setCustomTheme(JSONObject, ThemeEnum)` allows to enforce a specific theme (dark, light or your own).
+- `whiteLabelNamePaymentSdk.setLightTheme(JSONObject)` allows to modify the payment dialog's light theme.
+- `whiteLabelNamePaymentSdk.setDarkTheme(JSONObject)` allows to modify the payment dialog's dark theme.
+- `whiteLabelNamePaymentSdk.setCustomTheme(JSONObject, ThemeEnum)` allows to enforce a specific theme (dark, light or your own).
 
 ```kotlin
 // ...
@@ -196,10 +196,10 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        whiteLabelNamePaymentSdkTWO = WhiteLabelNamePaymentSdkTWO(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
-        whiteLabelNamePaymentSdkTWO.setDarkTheme(getCustomTheme())
-        whiteLabelNamePaymentSdkTWO.setLightTheme(getCustomTheme())
+        whiteLabelNamePaymentSdk.setDarkTheme(getCustomTheme())
+        whiteLabelNamePaymentSdk.setLightTheme(getCustomTheme())
     }
 
     fun getCustomTheme(): JSONObject {
@@ -229,9 +229,9 @@ class MainActivity : AppCompatActivity(), OnResultEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        whiteLabelNamePaymentSdkTWO = WhiteLabelNamePaymentSdkTWO(this,this)
+        whiteLabelNamePaymentSdk = WhiteLabelNamePaymentSdk(this,this)
 
-        whiteLabelNamePaymentSdkTWO.setCustomTheme(getCustomTheme(), ThemeEnum.DARK)
+        whiteLabelNamePaymentSdk.setCustomTheme(getCustomTheme(), ThemeEnum.DARK)
     }
 
     fun getCustomTheme(): JSONObject {
@@ -251,7 +251,7 @@ You can also use `setCustomTheme` to force the usage of the light or dark theme.
 
 ```kotlin
   //...
-whiteLabelNamePaymentSdkTWO.setCustomTheme(null, ThemeEnum.DARK)
+whiteLabelNamePaymentSdk.setCustomTheme(null, ThemeEnum.DARK)
 ```
 
 ### Colors
@@ -354,4 +354,4 @@ whiteLabelNamePaymentSdkTWO.setCustomTheme(null, ThemeEnum.DARK)
 }
 ```
 
-test8
+test8929292
