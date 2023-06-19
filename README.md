@@ -1,13 +1,13 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
-- [WhiteLabelNameOne Android Payment SDK](#WhiteLabelNameOne-android-payment-sdk)
+- [WhiteLabelNameOne Android Payment SDK](#whitelabelnameone-android-payment-sdk)
   - [API reference](#api-reference)
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Configuration](#configuration)
   - [Integration](#integration)
-    - [Set up WhiteLabelNameOne](#set-up-WhiteLabelNameOne)
+    - [Set up WhiteLabelNameOne](#set-up-whitelabelnameone)
     - [Create transaction](#create-transaction)
     - [Collect payment details](#collect-payment-details)
     - [Handle result](#handle-result)
@@ -24,15 +24,15 @@
 
 ## API reference
 
-| API | Type | Description |
-| --- | :-: | --- |
-| `OnResultEventListener` | interface | Interface for handling post-payment events `paymentResult` |
-| `fun paymentResult(paymentResult: PaymentResult)` | function | Result handler for transaction state |
-| `WhiteLabelNamePaymentSdk(eventListener: OnResultEventListener, context: Context)` | constructor | Initialization of SDK. Both Parameters are required! |
-| `whiteLabelNamePaymentSdk.launch(token: String)` | function | Opening payment dialog (activity) |
-| `whiteLabelNamePaymentSdk.setDarkTheme(theme: JSONObject)` | function | Can override the whole dark theme or just some specific color. All colors are in json format |
-| `whiteLabelNamePaymentSdk.setLightTheme(theme: JSONObject)` | function | Can override the whole light theme or just some specific color. All colors are in json format |
-| `whiteLabelNamePaymentSdk.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` | function | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
+| API                                                                                 |    Type     | Description                                                                                                                                                        |
+| ----------------------------------------------------------------------------------- | :---------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `OnResultEventListener`                                                             |  interface  | Interface for handling post-payment events `paymentResult`                                                                                                         |
+| `fun paymentResult(paymentResult: PaymentResult)`                                   |  function   | Result handler for transaction state                                                                                                                               |
+| `WhiteLabelNamePaymentSdk(eventListener: OnResultEventListener, context: Context)`  | constructor | Initialization of SDK. Both Parameters are required!                                                                                                               |
+| `whiteLabelNamePaymentSdk.launch(token: String)`                                    |  function   | Opening payment dialog (activity)                                                                                                                                  |
+| `whiteLabelNamePaymentSdk.setDarkTheme(theme: JSONObject)`                          |  function   | Can override the whole dark theme or just some specific color. All colors are in json format                                                                       |
+| `whiteLabelNamePaymentSdk.setLightTheme(theme: JSONObject)`                         |  function   | Can override the whole light theme or just some specific color. All colors are in json format                                                                      |
+| `whiteLabelNamePaymentSdk.setCustomTheme(theme: JSONObject?, baseTheme: ThemeEnum)` |  function   | Force to use only this theme (independent on user's setup). Can override default light/dark theme and force to use it or completely replace all or specific colors |
 
 ## Installation
 
@@ -355,3 +355,4 @@ whiteLabelNamePaymentSdk.setCustomTheme(null, ThemeEnum.DARK)
 ```
 
 lukasek 666999oooooooo
+test 2
